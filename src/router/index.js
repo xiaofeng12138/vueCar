@@ -5,12 +5,12 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: "/", name: "index", component:resolve=>require(['@/views/index/index.vue'],resolve),
-  children:[
-    {
-      path:'/user',
-      name:'User',
-      component:resolve=>require(['@/views/personal/index.vue'],resolve)
-    }
+    children:[
+      {
+        path:'/user',
+        name:'User',
+        component:resolve=>require(['@/views/personal/index.vue'],resolve)
+      }
   ]
 
 },
