@@ -1,5 +1,4 @@
 .cars-item{
-    width: 505px;
     height: 257px;
     background-color: #fff;
     border-radius: 24px;
@@ -64,21 +63,22 @@
                 }
             }
         }
-        .distance {
-            margin-left: 5px;
-            display: inline-block;
-            strong {
-                margin: 0 3px;
-                font-size: 22px;
-            }
-            sub {
-                position: relative;
-                top: -2px;
-            }
-            sub:first-of-type {
-                opacity: .6;
-            }
-        }
+       
+    }
+}
+.distance {
+    margin-left: 5px;
+    display: inline-block;
+    strong {
+        margin: 0 3px;
+        font-size: 22px;
+    }
+    sub {
+        position: relative;
+        top: -2px;
+    }
+    sub:first-of-type {
+        opacity: .6;
     }
 }
 .parking{
@@ -99,5 +99,127 @@
         border-top: 1px solid #d6d7d9;
         border-right: 1px solid #d6d7d9;
         @include webkit(transform, rotate(45deg));
+    }
+}
+.cars-detailed{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding-top:0 ;
+    .column{
+        font-style: 20px;
+        color: $color_main;
+        padding: 20px 0;
+        border-bottom: 1px solid #e1e1e1;
+        margin-bottom: 19px;
+        .close{
+           position: absolute;
+           top: 20px;
+           right: 30px;
+           display: block;
+           width: 26px;
+           height: 26px;
+           &:after,&:before{
+               content: "";
+               height: 26px;
+               position: absolute;
+               top: 50%;
+               left: 50%;
+               margin-top: -13px;
+               border-left: 2px solid #e1e1e1;
+               cursor: pointer;
+           }
+           &:after{
+               @include webkit(transform,rotate(-45deg))
+           }
+           &:before{
+               @include webkit(transform,rotate(45deg))
+           }
+        }
+    }
+    .car-electric-box{
+        padding: 15px;
+        margin-top: 17px;
+        border-radius: 100px;
+        background-color: #e1e1e1;
+        @include webkit(box-shadow, 0 0 10px 0 grba(0,0,0,.1));
+        .e-bg{
+            position: relative;
+            display: block;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 100px;
+        }
+        .e-high{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #0f9cee;
+            border-radius: 100px;
+            z-index: 11;
+        }
+    }
+    .info{
+        color: $color_main;
+        font-size: 16px;
+        margin: 20px 0;
+    }
+    .select-car-btn{
+        position: absolute;
+        left: 50%;
+        bottom: -42px;
+        margin-left: -120px;
+    }
+    .cars-type-list{
+        li{
+            height: 43px;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            border-color: #f3f3f3;
+            border-style: solid;
+            border-width: 2px;
+            line-height: 43px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+        .name{
+            float: left;
+        }
+        .price{
+            float: right;
+        }
+        .checked{
+            border-color: #0f9cee;
+        }
+    }
+    .clause{
+        height: 30px;
+        line-height: 30px;
+        .clause-content{
+            float: left;
+        }
+        .choose{
+            float: right;
+            width: 20px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 100px;
+            &.current{
+                background-color: $color_main;
+            }
+            &:after{
+                content: "";
+                display: block;
+                width: 6x;
+                height: 4px;
+                margin:  4px 0 0 4px;
+                border-left: 2px solid #fff;
+                border-bottom: 2px solid #fff;
+                @include webkit(transform,rotate(-45deg))
+            }
+
+        }
     }
 }

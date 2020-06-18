@@ -10,7 +10,6 @@ $color_blur : #00a3ff;
 }
 
 @mixin webkitA($type,$value) {
-   #{$type}:$value;
     #{$type}: -webkit-$value;
     #{$type}:-o-$value;
     #{$type}:-moz-$value;

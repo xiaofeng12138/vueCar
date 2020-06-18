@@ -12,3 +12,39 @@ i[class ^=icon]{  //获取类名为icon开头的类标签
 .icon-search{ background-image: url(~@/assets/images/icon/icon-search.png);}
 .icon-location{ background-image: url(~@/assets/images/icon/icon-location.png);}
 .icon-user{ background-image: url(~@/assets/images/icon/icon-user.png);}
+
+
+/**以下都是定义的公共样式部分*/
+.f-l{ float: left;}
+.f-r{ float: right;}
+.fs-24{font-size: 24px;}
+
+.clearfix{
+      &:after {
+         clear: both;
+         content: '.';
+         display: block;
+         height: 0;
+         line-height: 0;
+         overflow: hidden;
+   }
+   *height: 1%;
+   }
+
+   .t-a{text-align:center;}
+
+
+   /*按钮公共样式**/
+   .select-car-btn{
+      margin: 0 10px;
+      display: inline-block;
+      line-height: 84px;
+      width: 260px;
+      height: 84px;
+      border-radius: 100px;
+      color: #fff;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 300;
+      background-color: $color_main ;
+  }

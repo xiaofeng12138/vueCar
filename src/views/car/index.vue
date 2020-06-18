@@ -2,7 +2,7 @@
     <div class="cars-wrap">
         <div class="cars-wrap-swiper">
                 <swiper class="swiper" :options="swiperOption">
-                    <swiper-slide> <Carlist /></swiper-slide>
+                    <swiper-slide> <Carlist propsHeight = "820px"/></swiper-slide>
                     <swiper-slide> <Carlist /></swiper-slide>
                     <swiper-slide> <Carlist /></swiper-slide>
                     <swiper-slide> <Carlist /></swiper-slide>

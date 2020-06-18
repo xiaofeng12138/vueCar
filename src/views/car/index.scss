@@ -6,6 +6,9 @@
     z-index: 11;
 }
 .cars-wrap-swiper{
+    .swiper-container{
+        overflow: initial;
+    }
     position: relative;
     padding: 0 150px;
     .swiper-button-next ,.swiper-button-prev{
