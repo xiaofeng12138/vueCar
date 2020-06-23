@@ -4,8 +4,10 @@ import router from "./router";
 import store from "./store";
 //引入地图配置
 import '@/plugin/amap.js'
+import './utils/command.js'
 
 Vue.config.productionTip = false;
+
 
 new Vue({
   router,

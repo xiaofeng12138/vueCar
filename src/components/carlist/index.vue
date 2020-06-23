@@ -90,8 +90,7 @@
                  <h4 class="clause-content">参保《全面保证服务》用车更放心</h4>
                  <i class="choose current"></i>
             </div> 
-             <a href="javascript: void(0);" class="select-car-btn ">预约车辆</a>
-            
+             <a href="javascript: void(0);" class="select-car-btn " v-xf="'xiaofeng'">预约车辆</a>
        </section>
     </div>
 </template>

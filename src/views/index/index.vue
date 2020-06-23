@@ -1,12 +1,13 @@
 <template>
     <div class="index">
-      <Car />
+      <!-- <Car /> -->
       <aMap />
       <Navbar />
       <!-- <div id="personalWrap"  :class="[showLeft ?'open':'']"> :class="{open:showLeft}"-->
       <div id="personalWrap" :class="{open:showLeft}">
           <router-view />
       </div>
+
     </div>
 </template>
 
@@ -37,6 +38,17 @@ export default {
     //         }
     //     }
     // }
+
+    mounted(e) {
+        //判断点击的内容是否在弹窗范围内 
+        document.addEventListener('mouseup',e=>{
+            let userCon = document.getElementById('personalWrap');
+            if(userCon && !userCon.contains(e.target)){
+                this.$router.push({name:'index'})
+            }
+        })
+       
+    },
 }
 </script>
 <style lang="scss" scoped>
@@ -49,10 +61,8 @@ export default {
         z-index: 10;
         height: 100vh;
         background-color: #34393f;
-        transition: all .3s  ease 0s;
-        -webkit-transition: all .3s ease 0s;
-        -moz-transition: all .3s ease 0s; 
-        -o-transition: all .3s  ease 0s; 
+        @include webkit(transition,all .3s  ease 0s);
+        @include webkit(box-shadow,-5px 0 38px 0 rgba( 0,0,0,.4));
         &.open{
             right: 0; 
         }

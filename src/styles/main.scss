@@ -3,15 +3,21 @@
 
 i[class ^=icon]{  //获取类名为icon开头的类标签
    display: inline-block;
-   width: 44px;
-   height: 44px;
    border-radius: 100px;
    background-color: $color_main ;
 }
+.i-width-44{width: 44px;height: 44px;}
 .icon-help{ background-image: url(~@/assets/images/icon/icon-help.png);}
 .icon-search{ background-image: url(~@/assets/images/icon/icon-search.png);}
 .icon-location{ background-image: url(~@/assets/images/icon/icon-location.png);}
 .icon-user{ background-image: url(~@/assets/images/icon/icon-user.png);}
+
+//会员中心的icon
+.icon-user-1{ background-image: url(~@/assets/images/icon/icon-help.png);}
+.icon-user-2{ background-image: url(~@/assets/images/icon/icon-search.png);}
+.icon-user-3{ background-image: url(~@/assets/images/icon/icon-location.png);}
+.icon-user-4{ background-image: url(~@/assets/images/icon/icon-user.png);}
+.icon-user-5{ background-image: url(~@/assets/images/icon/icon-user.png);}
 
 
 /**以下都是定义的公共样式部分*/
@@ -47,4 +53,15 @@ i[class ^=icon]{  //获取类名为icon开头的类标签
       font-size: 26px;
       font-weight: 300;
       background-color: $color_main ;
+  }
+
+  .group-link{
+     a{
+        display: block;
+        margin: 0 -30px;
+        height: 64px;
+        line-height: 64px;
+        color: rgba(255,255,255, .4);
+        border-bottom: 1px solid rgba(255,255,255, .4);
+     }
   }

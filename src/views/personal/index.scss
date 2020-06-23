@@ -1,0 +1,58 @@
+.user-wrap{
+    padding: 0 30px;
+}
+.user-info{
+    display: flex;
+    padding: 84px 0 0 10px;
+    img{
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+    }
+    .meta{
+        flex: 1;
+        padding-left: 17px;
+        .name{
+            color: #909090;
+            line-height: 43px;
+            font-size: 18px;
+        }
+        span{
+            display: inline-block;
+            padding: 0 17px;
+            height: 27px;
+            line-height: 27px;
+            border-radius: 100px;
+            background-color: #10a0f2;
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+}
+.group-link{
+    padding-top: 80px;
+    i{
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        margin: 0 16px -10px 32px;
+    }
+}
+
+.logout{
+    position: absolute;
+    left: 50%;
+    bottom: 60px;
+    margin-left: -83px;
+    width: 165px;
+    height: 58px;
+    border-radius: 100px;
+    line-height: 58px;
+    outline: none;
+    border: none;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    background-color: #2d3339;
+
+ }
