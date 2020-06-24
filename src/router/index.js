@@ -10,6 +10,16 @@ const routes = [
         path:'/user',
         name:'User',
         component:resolve=>require(['@/views/personal/index.vue'],resolve)
+      },
+      {
+        path:'/safe',
+        name:'Safe',
+        component:resolve=>require(['@/views/safe/index.vue'],resolve)
+      },
+      {
+        path:'/password',
+        name:'Password',
+        component:resolve=>require(['@/views/safe/password.vue'],resolve)
       }
   ]
 

@@ -8,19 +8,19 @@
             </div>
         </div>
         <ul class="group-link">
-            <router-link to=''>
+            <router-link to='' class="arrow">
                 <i class="icon icon-user-1"></i>我的账户
             </router-link>
-            <router-link to=''>
+            <router-link to='' class="arrow">
                 <i class="icon icon-user-2"></i>租车订单
             </router-link>
-            <router-link to=''>
+            <router-link to='' class="arrow">
                 <i class="icon icon-user-3"></i>实名认证
             </router-link>
-            <router-link to=''>
+            <router-link to='/safe' class="arrow">
                <i class="icon icon-user-4"></i>安全设置
             </router-link>
-            <router-link to=''>
+            <router-link to='' class="arrow">
                <i class="icon icon-user-1"></i>帮助中心
             </router-link>
         </ul>

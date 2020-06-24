@@ -8,6 +8,12 @@ import './utils/command.js'
 
 Vue.config.productionTip = false;
 
+import './components/back/index'  //引入全局组件
+
+//全局引入UI组件库
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 new Vue({
   router,
