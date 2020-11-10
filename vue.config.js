@@ -46,22 +46,30 @@ module.exports = {
   // webpack-dev-server 相关配置
   devServer: {
     open: false, // 编译完成是否打开网页
-    host: '127.0.0.1', // 指定使用地址，默认localhost,0.0.0.0代表可以被外界访问
+    host: '', // 指定使用地址，默认localhost,0.0.0.0代表可以被外界访问
     port: 8080, // 访问端口
     https: false, // 编译失败时刷新页面
     hot: true, // 开启热加载
     hotOnly: false,
     // proxy: null, 
-    // proxy: {     // 设置代理
-    //   '/devApi': {
-    //       target: "http://www.web-jshtml.cn/dependenciesapi/token", //API服务器的地址  http://www.web-jshtml.cn/api
-    //       // target: "http://www.web-jshtml.cn/productapi",
-    //       changeOrigin: true,
-    //       pathRewrite: {
-    //           '^/devApi': ''    //其实这是一个正则表达式  已devApi 开头的
-    //       }
-    //   }
-    // },
+    proxy: {     // 设置代理
+      //登录端代理
+      [process.env.VUE_APP_API_LOGIN]: {
+          target: 'http://www.web-jshtml.cn/api/cars', 
+          changeOrigin: true,
+          pathRewrite: {
+            [`^${process.env.VUE_APP_API_LOGIN}`]: ''
+          }
+      },
+      //前端代理
+      [process.env.VUE_APP_API_WEB]: {
+        target: [process.env.VUE_API_DEV_TARGET_WEB], 
+        changeOrigin: true,
+        pathRewrite: {
+            [`^${process.env.VUE_APP_API_WEB}`]: ''    //其实这是一个正则表达式  已devApi 开头的
+        }
+    },
+    },
     overlay: { // 全屏模式下是否显示脚本错误
       warnings: true,
       errors: true

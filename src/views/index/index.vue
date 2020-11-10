@@ -7,7 +7,7 @@
       <div id="personalWrap" :class="{open:showLeft}">
           <router-view />
       </div>
-
+      <Login />
     </div>
 </template>
 
@@ -15,9 +15,9 @@
 import aMap from '@/views/amap/index'
 import Car from '@/views/car/index'
 import Navbar from '@c/navbar'
-
+import Login from './login'
 export default {
-    components:{aMap,Car,Navbar},
+    components:{aMap,Car,Navbar,Login},
     data() {
         return {
           
