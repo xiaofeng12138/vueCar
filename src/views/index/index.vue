@@ -1,7 +1,7 @@
 <template>
     <div class="index">
       <!-- <Car /> -->
-      <aMap />
+      <aMap @callComponentsFn = 'callComponentsFn'/>
       <Navbar />
       <!-- <div id="personalWrap"  :class="[showLeft ?'open':'']"> :class="{open:showLeft}"-->
       <div id="personalWrap" :class="{open:showLeft}">
@@ -16,6 +16,8 @@ import aMap from '@/views/amap/index'
 import Car from '@/views/car/index'
 import Navbar from '@c/navbar'
 import Login from './login'
+import {GetParking} from '@/api/parking'
+import { constants } from 'zlib';
 export default {
     components:{aMap,Car,Navbar,Login},
     data() {
@@ -44,11 +46,24 @@ export default {
         document.addEventListener('mouseup',e=>{
             let userCon = document.getElementById('personalWrap');
             if(userCon && !userCon.contains(e.target)){
+                const routerName = this.$route.name
+                if(routerName === 'index'){ return false}
                 this.$router.push({name:'index'})
             }
         })
        
     },
+    methods:{
+        //子组件调用父组件的方法
+        callComponentsFn(params){
+            params.function && this[params.function]()
+        },
+        loadMap(){
+            // GetParking().then((res)=>{
+            //     console.log(res)
+            // })
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -67,8 +82,6 @@ export default {
             right: 0; 
         }
     }
-    
-
 }
 
 </style>

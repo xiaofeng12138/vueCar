@@ -13,6 +13,8 @@ const service = axios.create({
 // 添加请求拦截器
 service.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
+    console.log(getToken())
+    console.log(getUsername())
     config.headers['Token'] = getToken();  // 携带token
     config.headers['Username'] = getUsername();  // 携带token
     return config;
@@ -32,6 +34,8 @@ service.interceptors.response.use(function (response) {
         return data; // return Promise.resolve(data);
     }
 }, function (error) {
+    
+    console.log(error)
     // 对响应错误做点什么
     return Promise.reject(error);
 });
