@@ -1,7 +1,7 @@
 <template>
     <div class="index">
       <!-- <Car /> -->
-      <aMap @callComponentsFn = 'callComponentsFn'/>
+      <aMap ref="amap" @callComponentsFn = 'callComponentsFn'/>
       <Navbar />
       <!-- <div id="personalWrap"  :class="[showLeft ?'open':'']"> :class="{open:showLeft}"-->
       <div id="personalWrap" :class="{open:showLeft}">
@@ -59,9 +59,27 @@ export default {
             params.function && this[params.function]()
         },
         loadMap(){
-            // GetParking().then((res)=>{
-            //     console.log(res)
-            // })
+            GetParking().then((res)=>{
+                const data =res.data.data
+                data.forEach((item)=>{
+                    item.content = "<img src='"+require('@/assets/images/parking_location_img.png')+"' />",
+                    item.position = item.lnglat.split(','),
+                    item.offset = [-35,-60],
+                    item.offsetTxt = [-30,-55],
+                    item.text = `<div style="width:60px;color:#fff;text-align:center;line-height:50px;font-size:20px;height:60px">${item.carsNumber}</div>`,
+                    item.events = {
+                        click:(e)=>{
+                           this.walkFn(e)
+                        }
+                    }
+                })
+                this.$refs.amap.parkingData(data)
+            })
+        },
+        walkFn(e){
+            let data = e.target.getExtData()
+            // console.log(e.target.getExtData().lnglat.split(','))
+            this.$refs.amap.getWalking(data)
         }
     }
 }

@@ -63,7 +63,7 @@ module.exports = {
       },
       //前端代理
       [process.env.VUE_APP_API_WEB]: {
-        target: [process.env.VUE_API_DEV_TARGET_WEB], 
+        target: 'http://www.web-jshtml.cn/api/cars/web', 
         changeOrigin: true,
         pathRewrite: {
             [`^${process.env.VUE_APP_API_WEB}`]: ''    //其实这是一个正则表达式  已devApi 开头的
