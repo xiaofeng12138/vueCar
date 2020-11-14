@@ -19,7 +19,7 @@
                 <!--停车场文字-->
                <el-amap-marker v-for="(item, index) in parkingCarNum" :events="item.events" :extData="item" :key="item.id +index" :content="item.text" :position="item.position" :offset="item.offsetTxt" :vid="index"></el-amap-marker>
           <!--停车场信息-->
-               <el-amap-marker v-for="(item, index) in parkingCarInfo"  :key="item.id + index*2" :content="item.text" :position="item.position" :offset="item.offset" :vid="index"></el-amap-marker>
+               <el-amap-marker v-for="(item, index) in parkingCarInfo" Zindex = '1000' :key="item.id + index*2" :content="item.text" :position="item.position" :offset="item.offset" :vid="index"></el-amap-marker>
          </el-amap>
 
     </div>
@@ -29,6 +29,7 @@
 import {AMapManager,lazyAMapApiLoaderInstance} from 'vue-amap'
 import { selfLocation } from './location.js'
 import { Walking } from './walking.js'
+import styleCss from './stylecss'
 
 let amapManager = new AMapManager()
 export default {
@@ -47,15 +48,7 @@ export default {
                     })
                 }
             },
-            circles:[
-                {
-                   center:[0,0],
-                   radius:4,
-                   color:'#393e43',
-                   strokeOpacity:'0.2',
-                   strokeWeight:'30'
-                }
-            ],
+            circles:[],
             parkingAllData:{},
             parkingLocation:'',//当前停车场定位
             parking:[],
@@ -74,8 +67,15 @@ export default {
             this.locationFn()
         },
         onComplete(val){
-                this.self_location = [val.position.lng,val.position.lat]
-                this.circles[0].center = [val.position.lng,val.position.lat]
+            this.self_location = [val.position.lng,val.position.lat]
+            const json ={
+                    radius:4,
+                    color:'#393e43',
+                    strokeOpacity:'0.2',
+                    strokeWeight:'30'
+                    }
+                json.center = [val.position.lng,val.position.lat]
+                this.circles.push(json)
         },
         locationFn(){
              selfLocation({
@@ -88,16 +88,23 @@ export default {
             this.parking = params
             this.parkingCarNum = params
         },
-        //获取线路规划函数
-        getWalking(params){
-            //步行路线规划
-            this.parkingAllData = params
-            let endLatlng = params.lnglat.split(',')
-            this.parkingLocation = endLatlng
+        //储存数据
+        savaData(params){
+            if(params.key){
+                this[params.key] = params.value
+            }
+           
+        },
+        //步行路线规划
+        getWalking(lnglat){
+         
+            // this.parkingAllData = params
+            // let endLatlng = params.lnglat.split(',')
+            // this.parkingLocation = endLatlng
             Walking({
                 map:this.map,
                 position_start: this.self_location,
-                position_end:endLatlng,
+                position_end:lnglat,
                 complete:(val)=> this.handerWalking(val)
             })
         },
@@ -106,8 +113,10 @@ export default {
             this.parkingCarInfo =[{
                 position:this.parkingAllData.lnglat.split(','),
                 offset:[-15,-54],
-                text:`<div style="color:#fff;border-radius:100px;padding:0 20px;line-height:50px;height:50px;width:300px;font-size:16px;background-color:#34393f;">
-                 <strong>${this.parkingAllData.carsNumber}</strong> 辆车 | 距离您 <strong>${val.routes[0].distance}</strong> 米
+                text:`<div style="${styleCss.parkingInfoWrap}">
+                 <span style="${styleCss.parkingInfoNumber}">${this.parkingAllData.carsNumber}</span>辆车
+                 <span style="${styleCss.parkingInfoLine}"></span>
+                 距离您 <strong>${val.routes[0].distance}</strong> 米
                 </div>`
             }]
 

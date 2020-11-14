@@ -78,8 +78,13 @@ export default {
         },
         walkFn(e){
             let data = e.target.getExtData()
+            console.log(data)
             // console.log(e.target.getExtData().lnglat.split(','))
-            this.$refs.amap.getWalking(data)
+            this.$refs.amap.savaData({
+                key:'parkingAllData',
+                value:data
+            })
+            this.$refs.amap.getWalking(data.lnglat.split(','))
         }
     }
 }
