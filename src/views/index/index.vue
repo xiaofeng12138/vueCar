@@ -1,6 +1,6 @@
 <template>
     <div class="index">
-      <!-- <Car /> -->
+      <Car ref="carss" />
       <aMap ref="amap" @callComponentsFn = 'callComponentsFn'/>
       <Navbar />
       <!-- <div id="personalWrap"  :class="[showLeft ?'open':'']"> :class="{open:showLeft}"-->
@@ -45,6 +45,19 @@ export default {
         //判断点击的内容是否在弹窗范围内 
         document.addEventListener('mouseup',e=>{
             let userCon = document.getElementById('personalWrap');
+            let carListWrap = document.getElementsByClassName('cars-wrap')[0]
+
+            //关闭车辆列表
+             if(carListWrap && !carListWrap.contains(e.target)){
+                let isReqest = this.$store.state.App.isRequestList
+                console.log(isReqest)
+                if(!isReqest){
+                    this.$store.commit('App/SET_ISCLICKLIST',false)
+                }
+               //this.$store.commit('App/SET_ISCLICKLIST',false)
+            }
+
+            //关闭个人中心
             if(userCon && !userCon.contains(e.target)){
                 const routerName = this.$route.name
                 if(routerName === 'index'){ return false}
@@ -59,6 +72,7 @@ export default {
             params.function && this[params.function]()
         },
         loadMap(){
+            const _that = this
             GetParking().then((res)=>{
                 const data =res.data.data
                 data.forEach((item)=>{
@@ -69,7 +83,9 @@ export default {
                     item.text = `<div style="width:60px;color:#fff;text-align:center;line-height:50px;font-size:20px;height:60px">${item.carsNumber}</div>`,
                     item.events = {
                         click:(e)=>{
+                           this.$store.commit('App/SET_ISREQUESTLIST',true)
                            this.walkFn(e)
+                           this.gettt(e)
                         }
                     }
                 })
@@ -78,13 +94,16 @@ export default {
         },
         walkFn(e){
             let data = e.target.getExtData()
-            console.log(data)
             // console.log(e.target.getExtData().lnglat.split(','))
             this.$refs.amap.savaData({
                 key:'parkingAllData',
                 value:data
             })
             this.$refs.amap.getWalking(data.lnglat.split(','))
+        },
+        gettt(e){
+            let data = e.target.getExtData()
+            this.$refs.carss.getList(data)
         }
     }
 }

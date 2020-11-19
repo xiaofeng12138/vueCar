@@ -4,7 +4,7 @@ const styleCss = {
                      padding:0 10px;
                      line-height:47px;
                      height:47px;
-                     width:160px;
+                     width:180px;
                      font-size:12px;
                      background-color:#34393f;`,
     parkingInfoNumber:`font-size:16px;

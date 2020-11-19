@@ -1,19 +1,21 @@
 <template>
     <div >
-        <section class="cars-item">
+        <section class="cars-item" @click="showDetail">
             <header>
                 <h4 class="cars-logo">
-                    <img src="../../assets/images/cars-logo.png" alt="Mustang 2019款">
-                    <span class="name">Mustang 2019款</span>
+                    <img :src="data.imgUrl" :alt="data.carsMode">
+                    <span class="name">{{data.carsMode}}</span>
                 </h4>
-                <p class="cars-attr">新能源汽车  5座</p>
+                <p class="cars-attr">
+                    {{data.carsAttr | energyTypes}}   {{data.carsAttr | settingNumber}} 座
+                   </p>
             </header>
             <div class="cars-content">
                 <div class="info">
                     <div>
-                        <h4 class="cars-number">粤 B745N8</h4>
+                        <h4 class="cars-number">{{data.carsNumber}}</h4>
                         <div>
-                            <ul class="cars-electric active-li-8">
+                            <ul class="cars-electric" :class="data.oil | engryFn">
                                 <li></li>
                                 <li></li>
                                 <li></li>
@@ -27,43 +29,43 @@
                             </ul>
                             <p class="distance">
                                 <sub>约</sub>
-                                <strong>600</strong>
+                                <strong>{{data.countKm}}</strong>
                                 <sub>KM</sub>
                             </p>
                         </div>
                     </div>
                 </div>
-                <img src="../../assets/images/pic001.jpg" alt="">
+                <img :src="data.carsImg" alt="">
             </div>
             <footer>
-                <a href="javascript:void(0)" class="parking">某某停车场</a>
+                <a href="javascript:void(0)" class="parking">{{data.parkingName}}</a>
             </footer>
             
        </section>
-        <section class="cars-item  cars-detailed" :style="'height:'+ propsHeight">
-            <h4 class="column">某某停车场
-                <i class="close"></i>
+        <section class="cars-item  cars-detailed" :style="'height:'+ propsHeight" v-if="show_cars_detail">
+            <h4 class="column">{{data.parkingName}}
+                <i class="close" @click="close"></i>
             </h4>
 
             <header>
                 <h4 class="cars-logo">
-                    <img src="../../assets/images/cars-logo.png" alt="Mustang 2019款">
-                    <span class="name">Mustang 2019款</span>
+                     <img :src="data.imgUrl" :alt="data.carsMode">
+                    <span class="name">{{data.carsMode}}</span>
                 </h4>
-                <p class="cars-attr">新能源汽车  5座</p>
+                <p class="cars-attr"> {{data.carsAttr | energyTypes}}   {{data.carsAttr | settingNumber}} 座</p>
             </header>
-            <img src="../../assets/images/pic001.jpg" alt="" style="width:100%">
+            <img :src="data.carsImg" alt="" style="width:100%;margin-bottom:10px">
             <div class="clearfix">
-                <div class="fs-24 f-l">粤 B745N8</div>
+                <div class="fs-24 f-l">{{data.carsNumber}}</div>
                 <p class="distance f-r">
                     <sub>约</sub>
-                    <strong>600</strong>
+                    <strong>{{data.countKm}}</strong>
                     <sub>KM</sub>
                 </p> 
             </div>    
             <div class="car-electric-box">
                 <div class="clearfix" style="position:relative">
-                    <span class="e-high" style="width:80%"></span>
+                    <span class="e-high" :style="`width:${Math.round(data.oil/10)*10}%`"></span>
                     <span class="e-bg"></span>
                 </div>
             </div> 
@@ -91,17 +93,63 @@
                  <i class="choose current"></i>
             </div> 
              <a href="javascript: void(0);" class="select-car-btn " v-xf="'xiaofeng'">预约车辆</a>
-       </section>
+        </section>
     </div>
 </template>
 
 <script>
+import {getCarAttrKey} from '@/utils/format.js'
+import { setTimeout } from 'timers';
 export default {
     props:{
-        propsHeight:{
-            type:String,
-            default:'257px'
+        data:{
+            type:Object,
+            default:()=>({})
         }
+    },
+    filters:{
+        engryFn(e){
+             let data = Math.round(e/10)
+             return `active-li-${data}`
+        },
+        energyTypes(val){
+           return getCarAttrKey({
+                data:val,
+                parantKey:'basics',
+                childKey:'engry_type'
+            })
+        },
+        settingNumber(val){
+            return getCarAttrKey({
+                data:val,
+                parantKey:'carsBody',
+                childKey:'seating_number'
+            })
+        }
+    },
+    data(){
+        return{
+            show_cars_detail:false,
+            propsHeight:0,
+            timer:null
+        }
+    },
+    methods:{
+        //展开车辆详情
+       showDetail(){
+         const view_height = document.documentElement.clientHeight || document.body.clientHeight
+         const ViewHeight = view_height - 140
+         this.show_cars_detail = true
+         if(this.timer){clearTimeout(this.timer)}
+         this.timer = setTimeout(()=>{
+             this.propsHeight = `${ViewHeight}px`
+             clearTimeout(this.timer)
+         },10)
+       },
+       close(){
+         this.show_cars_detail = false
+         this.propsHeight = '0px'
+       }
     }
 }
 </script>

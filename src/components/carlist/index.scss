@@ -107,6 +107,8 @@
     left: 0;
     bottom: 0;
     padding-top:0 ;
+    height: 0;
+    @include webkit( transition,all .3s ease 0s);
     .column{
         font-style: 20px;
         color: $color_main;
