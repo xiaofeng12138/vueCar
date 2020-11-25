@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {margin: 0;padding: 0;box-sizing: border-box;}
+html{font-size:62.5%;}
+body{font-size: 10px;}
+.table-wrap{width: 620px;border:1px solid #e6e6e6;margin:100px auto;}
+.table-head{border-bottom: 1px #e6e6e6 solid;}
+.table-content{height: 189px;overflow-y:scroll;}
+.grid{table-layout: fixed;width:100%;border-width: 0;border-collapse:collapse;empty-cells: show;font-size: 14px;}
+.grid tr th{border-left:1px solid #e6e6e6;padding: 0.929rem 0.5rem;text-align:left;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;}
+.grid tr td{border-left: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;padding: 0.929rem 0.5rem;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;}
+.grid tr td:first-child{border-left-width:0;}
+.grid tr:last-child td{border-bottom-width:0;}
+    </style>
+</head>
+<body>
+    <div class="table-wrap">
+  <div class="table-head">
+    <div class="table-head-wrap">
+      <table class="grid">
+        <colgroup>
+          <col style="width: 80px;">
+          <col>
+          <col>
+          <col style="width: 217px;">
+        </colgroup>
+        <thead>
+        <tr>
+          <th><span>序号</span></th>
+          <th><span>国籍</span></th>
+          <th><span>战队</span></th>
+          <th><span>比分</span></th>
+        </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="table-content">
+    <table class="grid">
+      <colgroup>
+        <col style="width: 80px;">
+        <col>
+        <col>
+        <col style="width: 200px">
+      </colgroup>
+      <tbody>
+      <tr>
+        <td><span>01</span></td>
+        <td><span>中国</span></td>
+        <td><span>小南国</span></td>
+        <td><span>20</span></td>
+      </tr>
+      <tr>
+        <td><span>02</span></td>
+        <td><span>日本</span></td>
+        <td><span>死棒槌</span></td>
+        <td><span>10</span></td>
+      </tr>
+      <tr>
+        <td><span>03</span></td>
+        <td><span>菲律宾</span></td>
+        <td><span>老棒槌</span></td>
+        <td><span>6</span></td>
+      </tr>
+      <tr>
+        <td><span>04</span></td>
+        <td><span>印度</span></td>
+        <td><span>小棒槌</span></td>
+        <td><span>4</span></td>
+      </tr>
+      <tr>
+        <td><span>05</span></td>
+        <td><span>美国</span></td>
+        <td><span>大棒槌</span></td>
+        <td><span>2</span></td>
+      </tr>
+      <tr>
+        <td><span>06</span></td>
+        <td><span>韩国</span></td>
+        <td><span>你就是个棒槌</span></td>
+        <td><span>0</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

@@ -70,22 +70,10 @@
                 </div>
             </div> 
             <p class="t-a info"> 取车支付12.0元，项目补贴12元</p>     
-            <ul class="cars-type-list">
-                <li class="checked">
-                    <h4 class="name">日租车</h4>
-                    <span class="price">300元/天</span>
-                </li>
-                 <li>
-                    <h4 class="name">日租车</h4>
-                    <span class="price">300元/天</span>
-                </li>
-                 <li>
-                    <h4 class="name">日租车</h4>
-                    <span class="price">300元/天</span>
-                </li>
-                 <li>
-                    <h4 class="name">日租车</h4>
-                    <span class="price">300元/天</span>
+            <ul class="cars-type-list" >
+                <li :class="chooseId == item.carsLeaseTypeId ? 'checked':''" v-for="(item,index) in  carsLeaseArray" @click="choosePrice(item)">
+                    <h4 class="name">{{item.carsLeaseTypeName}}</h4>
+                    <span class="price">{{item.price}}元</span>
                 </li>
             </ul>    
             <div class="clause">
@@ -99,6 +87,7 @@
 
 <script>
 import {getCarAttrKey} from '@/utils/format.js'
+import {GetCarsLease} from '@/api/cars.js'
 import { setTimeout } from 'timers';
 export default {
     props:{
@@ -131,10 +120,16 @@ export default {
         return{
             show_cars_detail:false,
             propsHeight:0,
-            timer:null
+            timer:null,
+            carsLeaseArray:[],
+            chooseId:''
         }
     },
     methods:{
+        //价格选择函数
+        choosePrice(item){
+            this.chooseId = item.carsLeaseTypeId
+        },
         //展开车辆详情
        showDetail(){
          const view_height = document.documentElement.clientHeight || document.body.clientHeight
@@ -145,10 +140,20 @@ export default {
              this.propsHeight = `${ViewHeight}px`
              clearTimeout(this.timer)
          },10)
+         this.getCarLeaseFn()
        },
        close(){
          this.show_cars_detail = false
          this.propsHeight = '0px'
+       },
+       //获取租赁类型函数
+       getCarLeaseFn(){
+           let requestId ={
+               carsId:this.data.id
+           }
+           GetCarsLease(requestId).then(res=>{
+               this.carsLeaseArray = res.data.data
+           })
        }
     }
 }
