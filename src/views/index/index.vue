@@ -44,7 +44,9 @@ export default {
         document.addEventListener('mouseup',e=>{
             let userCon = document.getElementById('personalWrap');
             if(userCon && !userCon.contains(e.target)){
-                this.$router.push({name:'index'})
+                this.$router.push({
+                    name:'index'
+                    })
             }
         })
        

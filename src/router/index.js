@@ -12,6 +12,40 @@ const routes = [
         component:resolve=>require(['@/views/personal/index.vue'],resolve)
       },
       {
+        path:'/login',
+        name:'Login',
+        meta:{
+          title:'登录'
+        },
+        component:resolve=>require(['@/views/account/login.vue'],resolve)
+      },
+      {
+        path:'/register',
+        name:'Register',
+        meta:{
+          title:'注册'
+        },
+        component:resolve=>require(['@/views/account/register.vue'],resolve)
+      },
+      {
+        path:'/forget',
+        name:'Forget',
+        meta:{
+          title:'重置密码'
+        },
+        component:resolve=>require(['@/views/account/forget.vue'],resolve)
+      },
+      {
+        path:'/user',
+        name:'User',
+        component:resolve=>require(['@/views/personal/index.vue'],resolve)
+      },
+      {
+        path:'/user',
+        name:'User',
+        component:resolve=>require(['@/views/personal/index.vue'],resolve)
+      },
+      {
         path:'/safe',
         name:'Safe',
         component:resolve=>require(['@/views/safe/index.vue'],resolve)
