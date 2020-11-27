@@ -33,4 +33,15 @@ export function Login(data){
     })
 }
 
+/**
+ * 忘记密码
+ */
+export function Forget(data){
+    return service.request({
+        method: "post",
+        url: `${process.env.VUE_APP_API_WEB}/account/forget/`,
+        data
+    })
+}
+
 

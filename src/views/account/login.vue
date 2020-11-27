@@ -22,28 +22,22 @@
 <script>
 import Username from '@c/username/index'
 import PasswordVue from '@c/username/password'
-import { Login } from '@/api/account.js' 
 
-import {setAccountToken,setAccountUsername} from '@/utils/accountCookie'
 export default {
     components:{Username,PasswordVue},
     data(){
         return {
             form: {
-                 username: '',
-                 password:'',
-                }
-       }
+                  username: '',
+                  password:'',
+                 }
+               }
     },
     methods: {
       onSubmit() {
          this.$refs['form'].validate((valid) => {
-          if (valid) {
-            this.loginFn()
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
+          if (valid) {this.loginFn()} 
+          else {console.log('error submit!!'); return false;}
         });
       },
        loginFn(){
@@ -51,14 +45,11 @@ export default {
             username:this.form.username,
             password:this.form.password,
           }
-          Login(requsetData).then(res=>{
-            console.log(res)
-            if(res.resCode == 0){
-               setAccountToken(res.data.token)
-               setAccountUsername(res.data.username)
-                this.$message.success(res.message)
-               this.$router.push({name:'index'})
-             }
+          this.$store.dispatch('account/loginAction',requsetData).then((res)=>{
+             this.$message.success(res.message)
+             this.$router.push({name:'index'})
+          }).catch((err)=>{
+            return err
           })
         }
     }

@@ -24,13 +24,22 @@
                <i class="icon icon-user-1"></i>帮助中心
             </router-link>
         </ul>
-        <button class="logout">退出</button>
+        <button class="logout" @click="logout">退出</button>
 
     </div>
 </template>
 <script>
 export default {
-    
+    data(){
+        return{}
+    },
+    methods:{
+        logout(){
+             this.$store.dispatch('account/logoutAction').then(res=>{
+                 this.$router.push({name:'index'})
+             })
+        }
+    },
 }
 </script>
 <style lang="scss" scoped>

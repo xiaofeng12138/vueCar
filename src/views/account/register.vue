@@ -15,9 +15,9 @@
                 <el-button type="primary" @click="onSubmit" class="btn-block">确认</el-button>
             </el-form-item>
             </el-form>
-            <div style="text-align:right" >
+            <!-- <div style="text-align:right" >
                 <router-link to="/forget" style="color:#fff;opacity:0.4;cursor:pointer;">忘记密码</router-link>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -26,8 +26,6 @@ import Username from '@c/username/index'
 import Code from '@c/countdown/index'
 import PasswordVue from '@c/username/password'
 import PasswordConfirm from '@c/username/passwordConfirm'
-
-import { Register} from '@/api/account.js' 
 export default {
     components:{Username,Code,PasswordVue,PasswordConfirm},
     data(){
@@ -57,9 +55,11 @@ export default {
             password:this.form.password,
             code:this.form.code
           }
-          Register(requsetData).then(res=>{
-             this.$message.success(res.message)
-             this.$router.push({name:'Login'})
+          this.$store.dispatch('account/registerAction',requsetData).then((res)=>{
+              this.$message.success(res.message)
+              this.$router.push({name:'Login'})
+          }).catch((err)=>{
+            return err
           })
         }
     },
