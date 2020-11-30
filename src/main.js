@@ -5,6 +5,7 @@ import store from "./store";
 //引入地图配置
 import '@/plugin/amap.js'
 import './utils/command.js'
+import './router/premit'
 
 Vue.config.productionTip = false;
 

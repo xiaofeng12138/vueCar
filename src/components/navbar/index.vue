@@ -12,10 +12,14 @@
     </div>
 </template>
 <script>
+
+import {getAccountToken} from '@/utils/accountCookie'
 export default {
     methods: {
         goUser(){
-            this.$router.push('/user')
+            this.$router.push({
+                name:getAccountToken()?'User':'Login'
+            })
         }
     },
     
