@@ -28,7 +28,7 @@ export default {
     },
     computed:{
         showTitle(){
-            return this.$store.state.app.routerName
+            return this.$store.state.App.routerName
         }
     }
 }

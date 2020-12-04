@@ -5,13 +5,13 @@
             <router-link to='/password' class="arrow">
                修改登录密码
             </router-link>
-            <router-link to='' class="arrow">
+            <router-link to='/capital' class="arrow">
                 设置资金密码
             </router-link>
             <router-link to='' class="arrow">
                绑定手机号
             </router-link>
-            <router-link to='' class="arrow">
+            <router-link to='/bank' class="arrow">
               绑定银行卡
             </router-link>
         </ul>

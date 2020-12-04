@@ -44,4 +44,16 @@ export function Forget(data){
     })
 }
 
+/**
+ * 用户租车接口
+ */
+export function ConfirmCars(data){
+    return service.request({
+        method: "post",
+        url: `${process.env.VUE_APP_API_WEB}/confirmCars/`,
+        data
+    })
+}
+
+
 

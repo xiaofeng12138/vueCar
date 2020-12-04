@@ -55,7 +55,7 @@ export default {
             password:this.form.password,
             code:this.form.code
           }
-        this.$store.dispatch('account/forgetAction',requsetData).then((res)=>{
+        this.$store.dispatch('Account/forgetAction',requsetData).then((res)=>{
               this.$message.success(res.message)
               this.$router.push({name:'Login'})
           }).catch((err)=>{

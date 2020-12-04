@@ -55,7 +55,7 @@ export default {
             password:this.form.password,
             code:this.form.code
           }
-          this.$store.dispatch('account/registerAction',requsetData).then((res)=>{
+          this.$store.dispatch('Account/registerAction',requsetData).then((res)=>{
               this.$message.success(res.message)
               this.$router.push({name:'Login'})
           }).catch((err)=>{

@@ -45,9 +45,9 @@ export default {
             username:this.form.username,
             password:this.form.password,
           }
-          this.$store.dispatch('account/loginAction',requsetData).then((res)=>{
+          this.$store.dispatch('Account/loginAction',requsetData).then((res)=>{
              this.$message.success(res.message)
-             this.$router.push({name:'index'})
+             this.$router.replace({name:'index'})
           }).catch((err)=>{
             return err
           })
