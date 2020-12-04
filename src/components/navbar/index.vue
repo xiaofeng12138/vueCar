@@ -6,16 +6,27 @@
             <li>
                 <a href="javascript: void(0);" class="select-car-btn">选择车辆</a>
             </li>
-            <li><i class="icon icon-location i-width-44"></i></li>
+            <li @click="location"><i class="icon icon-location i-width-44"></i></li>
             <li @click="goUser"><i class="icon icon-user i-width-44"></i></li>
         </ul>
     </div>
 </template>
 <script>
+
+import {getAccountToken} from '@/utils/accountCookie'
 export default {
+    data() {
+        return {
+        }
+    },
     methods: {
         goUser(){
-            this.$router.push('/user')
+            this.$router.push({
+                name:getAccountToken()?'User':'Login'
+            })
+        },
+        location(){
+            this.$store.commit('Location/SET_LOCATION')
         }
     },
     

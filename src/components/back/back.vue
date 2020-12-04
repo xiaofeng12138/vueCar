@@ -1,9 +1,15 @@
 <template>
     <div class="back">
-        <div class="content">
-            <i class="iconback" @click="go"></i>
-            <h4 class="title">{{column}}</h4>
-        </div>
+      <div class="nav-header">
+            <div class="content">
+                <i class="iconback" @click="go"></i>
+                <h4 class="title">{{ showTitle }}</h4>
+            </div>
+            <div class="rightContent" >
+                <slot slotName = 'navHeader'></slot>
+            </div>
+      </div>
+
     </div>
 </template>
 <script>
@@ -20,18 +26,29 @@ export default {
             this.$router.go('-1')
         }
     },
+    computed:{
+        showTitle(){
+            return this.$store.state.App.routerName
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
 .back{
     position: relative;
-    padding-bottom: 147px;
-    .content{
+    padding-bottom: 80px;
+    .nav-header{
         position: absolute;
-        top: 21px;
-        left: 0;
-        right: 0;
-        height: 40px;
+        top: 10px;
+        left: 10px;
+        width: 100%;
+        .rightContent{
+            float: right;
+            line-height: 40px;
+            width: 100px;
+        }
+        .content{
+           float: left;
         .title{
             font-size: 16px;
             margin-left: 45px;
@@ -59,6 +76,7 @@ export default {
                 cursor: pointer;
             }
         }
+    }
     }
 }
 </style>

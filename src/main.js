@@ -5,6 +5,7 @@ import store from "./store";
 //引入地图配置
 import '@/plugin/amap.js'
 import './utils/command.js'
+import './router/premit'
 
 Vue.config.productionTip = false;
 
@@ -20,3 +21,9 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#app");
+
+import Router from 'vue-router'
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+}

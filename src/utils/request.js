@@ -1,6 +1,7 @@
 import axios from "axios";
 // cookies
 import { getToken, getUsername } from "./cookies";
+import { getAccountToken } from "./accountCookie";
 // ElementUI 单独引入
 import { Message } from 'element-ui';
 // 创建实例
@@ -14,6 +15,7 @@ const service = axios.create({
 service.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     config.headers['Token'] = getToken();  // 携带token
+    config.headers['Tokencars'] = getAccountToken();  // 携带token
     config.headers['Username'] = getUsername();  // 携带token
     return config;
 }, function (error) {
@@ -32,6 +34,8 @@ service.interceptors.response.use(function (response) {
         return data; // return Promise.resolve(data);
     }
 }, function (error) {
+    
+    console.log(error)
     // 对响应错误做点什么
     return Promise.reject(error);
 });

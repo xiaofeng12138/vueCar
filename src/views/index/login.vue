@@ -112,10 +112,10 @@ export default {
       // 禁用按钮
       this.code_disabled = true;
       // 按钮文本
-      this.code_text = `倒计进${second}秒`;
+      this.code_text = `倒计时${second}秒`;
       this.timer = setInterval(() => {
         second--;
-        this.code_text = `倒计进${second}秒`;
+        this.code_text = `倒计时${second}秒`;
         if(second < 0) {
           this.code_text = `重新获取`;
           // 启用按钮
